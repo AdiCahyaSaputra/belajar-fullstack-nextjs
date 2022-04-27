@@ -1,9 +1,13 @@
 import db from "../../../libs/db"
+import authorization from "../../../middlewares/authorization"
 
 export default async function handler(req, res) {
   // 405 = Method not allowed
   if(req.method !== "POST") return res.status(405).end()
-  // console.log(req.body); // dapet data dari request body
+  
+  // middlewares
+  const verify = await authorization(req, res)
+  if(!verify) return res.status(401).end()
   
   const { title, content } = req.body;
   
