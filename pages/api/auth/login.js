@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   // return json web token
   
   res.status(200).json({
-    msg: "Login",
+    msg: "Authenticate!",
     token
   })
 }

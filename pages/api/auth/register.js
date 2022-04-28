@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     .first()
   
   res.status(200).json({
-    msg: "Register",
+    msg: "Register Successfully",
     user
   })
 }
