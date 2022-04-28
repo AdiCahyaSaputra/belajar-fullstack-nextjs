@@ -1,4 +1,4 @@
-export default function InputLabel({ idLabel, labelText, type, placeholder, name, onChangeHandler }) {
+export default function InputLabel({ idLabel, labelText, type, placeholder, name, value, onChangeHandler }) {
   return (
     <div className="mb-6">
       <label htmlFor={ idLabel } className="inline-block mb-2 text-gray-700">{ labelText }</label>
@@ -20,7 +20,8 @@ export default function InputLabel({ idLabel, labelText, type, placeholder, name
         type={ type }
         placeholder={ placeholder }
         name={ name }
-        onChange={ (onChangeHandler) ?? 0 }/>
+        onChange={ (onChangeHandler) ?? 0 }
+        value={ value } />
     </div>
   )
 }
