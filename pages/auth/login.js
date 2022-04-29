@@ -2,7 +2,7 @@ import FormElement from "../../components/FormElement"
 import InputLabel from "../../components/InputLabel"
 import LoadingAuth from "../../components/LoadingAuth"
 import AlertAuth from "../../components/AlertAuth"
-import { guestOrAuth } from "../../middlewares/authPage"
+import { guest } from "../../middlewares/authPage"
 
 import Link from "next/link"
 import { useState } from "react"
@@ -11,7 +11,7 @@ import Router from "next/router"
 
 // ctx = Context -> Object
 export async function getServerSideProps(ctx) {
-  await guestOrAuth(ctx) // redirect if auth
+  await guest(ctx)
   
   return {
     props: {}
