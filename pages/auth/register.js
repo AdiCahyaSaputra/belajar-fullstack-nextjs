@@ -1,21 +1,32 @@
 import FormElement from "../../components/FormElement"
 import InputLabel from "../../components/InputLabel"
+import LoadingAuth from "../../components/LoadingAuth"
+import AlertAuth from "../../components/AlertAuth"
+import { guestOrAuth } from "../../middlewares/authPage"
 
 import Link from "next/link"
 import { useState } from "react"
 
+export async function getServerSideProps(ctx) {
+  await guestOrAuth(ctx) // redirect if auth
+  
+  return {
+    props: {}
+  }
+}
+
 export default function Register() {
-  const [fields, setFileds] = useState({
+  const [fields, setFields] = useState({
     email: "",
     password: ""
   })
   
-  const [status, setStatus] = useState("normal")
+  const [status, setStatus] = useState(0)
   
   async function registerHandler(e) {
     e.preventDefault()
     
-    setStatus("registering")
+    setStatus(103) // early hints
     
     // kirim request ke Api
     const registerReq = await fetch("/api/auth/register", {
@@ -26,20 +37,20 @@ export default function Register() {
       }
     })
     
-    if(registerReq.status !== 200) return setStatus("error")
+    if(registerReq.status !== 200) return setStatus(registerReq.status)
     
     // dapet respon
     const registerRes = await registerReq.json()
-    setFileds({
+    setFields({
       email: "",
       password: ""
     })
-    setStatus("success")
+    setStatus(200)
   }
   
   function getValue(e) {
     const name = e.target.name
-    setFileds({
+    setFields({
       ...fields, // previous value (cuz useState just replace not re assign the value)
       // using dynamic keys in object (es2015 feature)
       [name]: e.target.value
@@ -49,12 +60,8 @@ export default function Register() {
   
   return (
     <div className="container mx-auto p-4 flex flex-col items-center">
-      { status === "registering" ? (
-        <div className="absolute inset-0 bg-black/60 flex justify-center items-center">
-          <h1 className="text-sm font-bold rounded-sm py-2 px-4 bg-gray-700 text-white shadow-md inline-block animate-bounce uppercase">
-            Registering New User
-          </h1>
-        </div>
+      { status === 103 ? (
+          <LoadingAuth msgLoading="Registering New User" />
         ) : ""
       }
       
@@ -76,16 +83,12 @@ export default function Register() {
         value={ fields.password } />
       </FormElement>
       
-      { status === "success" ? (
-          <p className="text-sm font-medium text-green-600 mt-12 py-2 px-4 rounded-sm bg-green-100">
-            Register Successfully
-          </p>
+      { status === 200 ? (
+          <AlertAuth isSuccess={ true } msg="Register Successfully, Redirect To Login ?" />
         ) : ""
       }
-      { status === "error" ? (
-          <p className="text-sm font-medium text-red-600 mt-12 py-2 px-4 rounded-sm bg-red-100">
-            Register Error
-          </p>
+      { status > 200 ? (
+          <AlertAuth isSuccess={ false } msg={ "Register Error : " + status } />
         ) : ""
       }
       
