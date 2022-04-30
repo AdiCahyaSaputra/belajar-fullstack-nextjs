@@ -70,6 +70,12 @@ export default function Login() {
           <LoadingAuth msgLoading="Authenticate" />
         ) : ""
       }
+      
+      { status > 200 ? (
+          <AlertAuth isSuccess={ false } msg={ "Login Error : " + status } />
+        ) : ""
+      }
+      
       <FormElement title="Login" submit="Login" onSubmitHandler={ loginHandler }>
         <InputLabel labelText="Email" 
         idLabel="email" 
@@ -87,11 +93,6 @@ export default function Login() {
         onChangeHandler={ getValue }
         value={ fields.password } />
       </FormElement>
-      
-      { status > 200 ? (
-          <AlertAuth isSuccess={ false } msg={ "Login Error : " + status } />
-        ) : ""
-      }
       
       <Link href="/auth/register">
         <a className="hover:text-blue-600 hover:underline text-blue-400 mt-16 text-lg">Did not have an account ? Register</a>

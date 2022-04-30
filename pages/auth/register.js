@@ -65,6 +65,16 @@ export default function Register() {
         ) : ""
       }
       
+      
+      { status === 200 ? (
+          <AlertAuth isSuccess={ true } msg="Register Successfully" />
+        ) : ""
+      }
+      { status > 200 ? (
+          <AlertAuth isSuccess={ false } msg={ "Register Error : " + status } />
+        ) : ""
+      }
+      
       <FormElement title="Register" submit="Register" onSubmitHandler={ registerHandler }>
         <InputLabel labelText="Email" 
         idLabel="email" 
@@ -83,14 +93,6 @@ export default function Register() {
         value={ fields.password } />
       </FormElement>
       
-      { status === 200 ? (
-          <AlertAuth isSuccess={ true } msg="Register Successfully, Redirect To Login ?" />
-        ) : ""
-      }
-      { status > 200 ? (
-          <AlertAuth isSuccess={ false } msg={ "Register Error : " + status } />
-        ) : ""
-      }
       
       <Link href="/auth/login">
         <a className="hover:text-blue-600 hover:underline text-blue-400 mt-16 text-lg">Already have account ? Login</a>
