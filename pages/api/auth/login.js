@@ -1,4 +1,4 @@
-import db from "../../../libs/db"
+import db from "libs/db"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 

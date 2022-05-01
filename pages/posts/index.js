@@ -1,11 +1,11 @@
-import { auth } from "../../middlewares/authPage"
+import { auth } from "middlewares/authPage"
 import Cookie from "js-cookie"
 import Router from "next/router"
 import Link from "next/link"
 import { useState } from "react"
 
-import LoadingAuth from "../../components/LoadingAuth"
-import AlertAuth from "../../components/AlertAuth"
+import LoadingAuth from "components/LoadingAuth"
+import AlertAuth from "components/AlertAuth"
 
 
 export async function getServerSideProps(ctx) {

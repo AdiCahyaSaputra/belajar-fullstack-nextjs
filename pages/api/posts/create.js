@@ -1,5 +1,5 @@
-import db from "../../../libs/db"
-import authorization from "../../../middlewares/authorization"
+import db from "libs/db"
+import authorization from "middlewares/authorization"
 
 export default async function handler(req, res) {
   // 405 = Method not allowed

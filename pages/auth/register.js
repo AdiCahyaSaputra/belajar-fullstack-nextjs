@@ -1,8 +1,8 @@
-import FormElement from "../../components/FormElement"
-import InputLabel from "../../components/InputLabel"
-import LoadingAuth from "../../components/LoadingAuth"
-import AlertAuth from "../../components/AlertAuth"
-import { guest } from "../../middlewares/authPage"
+import FormElement from "components/FormElement"
+import InputLabel from "components/InputLabel"
+import LoadingAuth from "components/LoadingAuth"
+import AlertAuth from "components/AlertAuth"
+import { guest } from "middlewares/authPage"
 
 import Link from "next/link"
 import { useState } from "react"

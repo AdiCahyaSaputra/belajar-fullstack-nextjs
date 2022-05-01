@@ -1,11 +1,11 @@
-import FormElement from "../../components/FormElement"
-import InputLabel, { TextareaLabel } from "../../components/InputLabel"
-import LoadingAuth from "../../components/LoadingAuth"
-import AlertAuth from "../../components/AlertAuth"
+import FormElement from "components/FormElement"
+import InputLabel, { TextareaLabel } from "components/InputLabel"
+import LoadingAuth from "components/LoadingAuth"
+import AlertAuth from "components/AlertAuth"
 
 
 import { useState } from "react"
-import { auth } from "../../middlewares/authPage"
+import { auth } from "middlewares/authPage"
 import Cookie from "js-cookie"
 import Router from "next/router"
 import Link from "next/link"
