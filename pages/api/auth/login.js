@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   const token = jwt.sign({
     id: user.id,
     email: user.email
-  }, "iniTokenRahasiaKu", { expiresIn: '7d' })
+  }, process.env.JWT_SECRET, { expiresIn: "7d" })
   
   // (user, tokenRahasia, option atau callback) kalo pake callback nanti jadi nya async btw
   // return json web token

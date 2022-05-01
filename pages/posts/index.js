@@ -62,7 +62,7 @@ export default function PostIndex(props) {
   
   function logout() {
     Cookie.remove("token")
-    Router.push("/auth/login")
+    Router.replace("/auth/login")
   }
   
   function getExcerpt(str) {
@@ -110,6 +110,11 @@ export default function PostIndex(props) {
               onClick={ () => deleteHandler(post.id) }
               >
                 Delete This Post
+              </div>
+              <div className="ml-2 py-1 rounded-md hover:bg-purple-700 px-3 text-sm inline-block font-medium mt-2 bg-purple-600 text-white"
+              onClick={ () => Router.push(`/posts/edit/${post.id }`) }
+              >
+                Edit This Post
               </div>
             </div>
           )

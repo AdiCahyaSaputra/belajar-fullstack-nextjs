@@ -44,7 +44,7 @@ export default function Login() {
     const loginRes = await loginReq.json()
     
     // nge set jwt
-    Cookie.set("token", loginRes.token)
+    Cookie.set("token", loginRes.token, { expires: 7 })
     
     setFields({
       email: "",
